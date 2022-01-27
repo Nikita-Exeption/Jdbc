@@ -15,7 +15,7 @@ public class CreateOwner {
     private final int credit;
     private final boolean sex;
 
-    public CreateOwner(String name, int balance, int credit, boolean sex) {
+    public CreateOwner(String name, int balance, int credit, boolean sex, String login , String password) {
         this.name = name;
         this.balance = balance;
         this.credit = credit;

@@ -11,6 +11,7 @@ public class SelectOwner {
     static int countConnection = 0;
 
     int id;
+
     public SelectOwner(int id){
         this.id = id;
     }

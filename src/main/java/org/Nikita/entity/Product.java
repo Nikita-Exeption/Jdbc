@@ -2,12 +2,24 @@ package org.Nikita.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.sql.*;
 
 @Getter
 @Setter
+@ToString
 public class Product {
+
+    private int id;
+    private String name;
+    private int price;
+
+    public Product(int id){
+        this.id = id;
+    }
+
+    public Product(){}
 
     private Connection setConnection() throws  SQLException{
         return  DriverManager.getConnection("jdbc:mysql://localhost:3306/auto", "root", "1234");
@@ -23,6 +35,22 @@ public class Product {
                 System.out.println("price: "+ resultSet.getInt("price"));
             }
         }
+
+    public Product select() throws  SQLException{
+        PreparedStatement preparedStatement = setConnection().prepareStatement("Select * from product where id = ?");
+        preparedStatement.setInt(1,id);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            name = resultSet.getString("name");
+            price = resultSet.getInt("price");
+        }
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(price);
+        product.setId(id);
+        return product;
+    }
 
 
     public void createNewProduct(String name , int price) throws  SQLException{
@@ -52,6 +80,20 @@ public class Product {
             System.out.println("name: " + resultSet.getString("name"));
             System.out.println("price: " + resultSet.getInt("price"));
         }
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setPrice(int price){
+        this.price = price;
+    }
+    public void setId(int id){
+        this.id = id;
     }
 
 }

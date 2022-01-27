@@ -1,6 +1,7 @@
 package org.Nikita;
 
 import org.Nikita.entity.Product;
+import org.Nikita.entity.User;
 import org.Nikita.resource.CreateOwner;
 import org.Nikita.resource.SelectOwner;
 import org.Nikita.transaction.Transaction;
@@ -11,8 +12,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args)  throws SQLException {
 
-        Product product = new Product();
-        product.sortLessPrice(1100);
+        User user = new User("Natasha", "123");
+        if(user.authorization()) {
+            Product product = new Product(1);
+            user.addProductId(product.select(), product.getId());
+        }else {
+            user.singIn();
+        }
 
 //        System.out.println("Application init \n" +
 //                "Choose what are you want do \n" +
