@@ -1,13 +1,13 @@
 package org.Nikita.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.*;
 
-@Getter
-@Setter
+@Data
 @ToString
 public class Product {
 
